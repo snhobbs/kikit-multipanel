@@ -1,0 +1,1 @@
+../../libs/kicad-make/Makefile

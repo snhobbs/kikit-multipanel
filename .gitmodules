@@ -1,0 +1,3 @@
+[submodule "libs/39f217ce1071c9b8aa11ac42347c932b"]
+	path = libs/kicad-make
+	url = git@gist.github.com:39f217ce1071c9b8aa11ac42347c932b.git

@@ -2,6 +2,9 @@
 import sys
 import click
 from . import kikit_multipanel
+from kikit import panelize_ui_impl
+import pandas
+
 
 @click.command()
 @click.option("--fname", required=True)

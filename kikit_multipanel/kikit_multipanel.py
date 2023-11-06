@@ -1,9 +1,9 @@
 import itertools
-import pandas
+import kikit
 from kikit import panelize_ui_impl
 from kikit.units import mm, deg
 from kikit.common import fromDegrees
-from kikit.panelize import Panel
+from kikit.panelize import Panel, Origin
 from pcbnewTransition.transition import pcbnew
 # import pcbnew
 import logging
@@ -19,7 +19,7 @@ def panelize(df, out, preset):
     '''
     settings_board = df.iloc[0]["fname"]
     board = pcbnew.LoadBoard(settings_board)
-    panel = panelize.Panel(out)
+    panel = Panel(out)
     panel.inheritDesignSettings(board)
     panel.inheritProperties(board)
     panel.inheritTitleBlock(board)
@@ -42,7 +42,7 @@ def panelize(df, out, preset):
             filename=line["fname"],
             destination=pcbnew.wxPoint(line["x"], line["y"]),
             rotationAngle=fromDegrees(line["rotation"]),
-            origin=panelize.Origin.TopLeft,
+            origin=Origin.TopLeft,
             tolerance=1 * mm,
             inheritDrc=False  # Required to avoid merging DRC rules
         )
@@ -82,7 +82,7 @@ def panelize(df, out, preset):
     cuts = panelize_ui_impl.buildFraming(preset, panel)
     frame_cuts = itertools.chain(*cuts)
     frameCuts = panelize_ui_impl.buildFraming(preset, panel)
-    panelize_ui_impl.makeOtherCuts(preset, panel, chain(backboneCuts, frameCuts))
+    panelize_ui_impl.makeOtherCuts(preset, panel, itertools.chain(backboneCuts, frameCuts))
     panelize_ui_impl.buildPostprocessing(preset["post"], panel)
     panelize_ui_impl.buildFiducials(preset, panel)
     panelize_ui_impl.buildTooling(preset, panel)

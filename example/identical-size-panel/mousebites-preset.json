@@ -1,0 +1,94 @@
+{
+    "layout": {
+        "type": "grid",
+        "rows": 2,
+        "cols": 3,
+        "hspace": "2mm",
+        "vspace": "2mm",
+        "rotation": "90deg",
+        "alternation": "none",
+        "renamenet": "Board_{n}-{orig}",
+        "renameref": "{orig}",
+        "hbackbone": 2,
+        "vbackbone": 2,
+        "hboneskip": false,
+        "vboneskip": false,
+        "hbonefirst":false,
+        "vbonefirst":false,
+        "baketext":false
+    },
+    "source": {
+        "type": "auto",
+        "tolerance": "1mm"
+    },
+    "tabs": {
+        "type": "fixed",
+        "width": "3mm",
+        "vwidth": "1mm",
+        "hwidth": "1mm",
+        "vcount":2,
+        "hcount":2,
+        "source": "none",
+        "fillet":"1mm",
+        "mindistance":"25.4mm"
+    },
+    "cuts": {
+        "type": "mousebites",
+        "drill": "0.5mm",
+        "spacing": "1mm",
+        "offset": "0.2mm",
+        "prolong":"0.5mm",
+        "fillet":"1mm"
+    },
+    "framing": {
+        "type": "railstb",
+        "width":"5mm",
+        "vspace":"3mm",
+        "hspace":"3mm",
+        "mintotalwidth":"100mm",
+        "maxtotalwidth":"50in",
+        "mintotalheight":"100mm",
+        "maxtotalheight":"50in",
+        "chamferwidth":"0mm",
+        "chamferheight":"0mm",
+        "fillet":"1mm"
+    },
+    "copperfill":{
+        "type": "hatched",
+        "clearance":"2mm",
+        "spacing":"0.5mm",
+        "width":"0.5mm"
+    },
+    "tooling": {
+        "type": "none",
+        "layout": "3hole",
+        "hoffset": "0mm",
+        "voffset": "0mm",
+        "size": "2mm",
+        "paste": false,
+        "code": "none",
+        "arg": ""
+    },
+    "fiducials": {
+        "type": "3fid",
+        "hoffset": "2mm",
+        "voffset": "2mm",
+        "coppersize": "1mm",
+        "opening": "1mm",
+        "paste": false,
+        "code": "none",
+        "arg": ""
+    },
+    "post": {
+        "type": "auto",
+        "copperfill": true,
+        "reconstructarcs": false,
+        "millradius": "1mm",
+        "millradiusouter": "0mm",
+        "script": "",
+        "scriptarg": "",
+        "origin": "tl",
+        "refillzones": false,
+        "dimensions": false
+    }    
+}
