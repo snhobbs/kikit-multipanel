@@ -1,0 +1,105 @@
+{
+    "layout": {
+        "type": "grid",
+        "rows": 2,
+        "cols": 3,
+        "hspace": "2mm",
+        "vspace": "2mm",
+        "rotation": "90deg",
+        "alternation": "none",
+        "renamenet": "Board_{n}-{orig}",
+        "renameref": "{orig}",
+        "hbackbone": 2,
+        "vbackbone": 2,
+        "hboneskip": false,
+        "vboneskip": false,
+        "hbonefirst":false,
+        "vbonefirst":false,
+        "baketext":false
+    },
+    "source": {
+        "type": "auto",
+        "tolerance": "1mm"
+    },
+    "tabs": {
+        "type": "fixed",
+        "width": "8mm",
+        "vwidth": "5mm",
+        "hwidth": "5mm",
+        "vcount":2,
+        "hcount":2,
+        "source": "none",
+        "fillet":"1mm",
+        "mindistance":"15mm"
+    },
+    "cuts": {
+        "type": "vcuts",
+        "drill": "0mm",
+        "spacing": "0mm",
+        "offset": "0mm",
+        "prolong":"0mm",
+        "cutcurves": false,
+        "layer": "Cmts.User",
+        "clearance": "0.1mm",
+        "code": "none",
+        "arg": ""
+
+    },
+    "framing": {
+        "type": "railstb",
+        "width":"2mm",
+        "height":"4mm",
+        "vspace":"3mm",
+        "hspace":"3mm",
+        "mintotalwidth":"100mm",
+        "maxtotalwidth":"50in",
+        "mintotalheight":"100mm",
+        "maxtotalheight":"50in",
+        "chamferwidth":"0mm",
+        "chamferheight":"0mm",
+        "fillet":"0mm"
+    },
+    "copperfill": {
+        "type": "hatched",
+        "clearance": "0.5mm",
+        "edgeclearance": "0.5mm",
+        "layers": "F.Cu,B.Cu",
+        "width": "1mm",
+        "diameter": "5mm",
+        "spacing": "1mm",
+        "orientation": "45deg",
+        "threshold": "15%"
+    },
+    "tooling": {
+        "type": "4hole",
+        "layout": "4hole",
+        "hoffset": "2mm",
+        "voffset": "2mm",
+        "size": "2mm",
+        "paste": false,
+        "code": "none",
+        "arg": ""
+    },
+    "fiducials": {
+        "type": "3fid",
+        "hoffset": "10mm",
+        "voffset": "2mm",
+        "coppersize": "1mm",
+        "opening": "1mm",
+        "paste": false,
+        "code": "none",
+        "arg": ""
+    },
+    "post": {
+        "type": "auto",
+        "copperfill": true,
+        "reconstructarcs": false,
+        "millradius": "1mm",
+        "millradiusouter": "0mm",
+        "script": "",
+        "scriptarg": "",
+        "origin": "tl",
+        "refillzones": false,
+        "dimensions": false
+    }    
+}
