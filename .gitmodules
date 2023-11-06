@@ -1,3 +1,9 @@
 [submodule "libs/39f217ce1071c9b8aa11ac42347c932b"]
 	path = libs/kicad-make
 	url = git@gist.github.com:39f217ce1071c9b8aa11ac42347c932b.git
+[submodule "libs/kikit"]
+	path = libs/kikit
+	url = git@github.com:snhobbs/kikit
+[submodule "libs/pcbnewTransition"]
+	path = libs/pcbnewTransition
+	url = git@github.com:snhobbs/pcbnewTransition.git
