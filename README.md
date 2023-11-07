@@ -8,6 +8,10 @@ Some extra board sections will need to be added in if the panel has gaps that ar
 ![](panel.svg)
 ![](panel-3D.png)
 
+```sh
+kikit_multipanel --fname panel.xlsx --out panel.kicad_pcb --preset_f preset.json
+```
+
 ## Future Developments
 + Add a rectangular packing optimization to autoplace the boards.
 + Centroid file correction
