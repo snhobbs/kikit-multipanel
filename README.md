@@ -8,6 +8,20 @@ Some extra board sections will need to be added in if the panel has gaps that ar
 ![](panel.svg)
 ![](panel-3D.png)
 
+# installation under Linux
+
+1. Download this repository via git or zip file (in this case unzip it)
+2. ```sh
+    cd kikit-multipanel
+    ```
+3. ```sh
+   sudo make install
+   ```
+4. test your installation with
+   ```sh
+    kikit_multipanel --help
+   ```
+# usage example
 ```sh
 kikit_multipanel --fname panel.xlsx --out panel.kicad_pcb --preset_f preset.json
 ```
