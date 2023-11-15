@@ -1,6 +1,6 @@
 [submodule "libs/39f217ce1071c9b8aa11ac42347c932b"]
 	path = libs/kicad-make
-	url = https://gist.github.com/39f217ce1071c9b8aa11ac42347c932b.git
+	url = https://github.com/snhobbs/kicad-make.git
 [submodule "libs/kikit"]
 	path = libs/kikit
 	url = https://github.com/snhobbs/kikit
