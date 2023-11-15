@@ -114,6 +114,14 @@ To run a subset of tests::
 
     $ python -m unittest tests.test_kikit_multipanel
 
+Building the html doc
+---------------------
+1. make sure you installed python3-sphinx ``sudo apt install python3-sphinx`
+2. ``cd kikit-multipanel``
+3. ``sudo make docs``
+4. open your new built documentation in doc/_build/html
+
+
 Deploying
 ---------
 
