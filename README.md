@@ -10,7 +10,7 @@ Some extra board sections will need to be added in if the panel has gaps that ar
 
 [Installation](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/installation.rst)
 
-[Contributong](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/contributing.rst)
+[Contributing](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/contributing.rst)
 
 [Usage](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/contributing.rst)
 
