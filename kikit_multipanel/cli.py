@@ -11,7 +11,7 @@ import pandas
 @click.option("--out", required=True, help="Output filename. Should end in .kicad_pcb")
 @click.option("--preset_f", required=True, help="Kikit preset json file")
 @click.version_option(__version__)
-def main(fname, out, preset_f, verison):
+def main(fname, out, preset_f):
     preset = panelize_ui_impl.loadPreset(preset_f)
     panelize_ui_impl.postProcessPreset(preset)
     df = pandas.read_excel(fname)
