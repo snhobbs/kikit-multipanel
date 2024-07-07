@@ -1,8 +1,8 @@
 {
     "layout": {
         "type": "grid",
-        "rows": 2,
-        "cols": 3,
+        "rows": 1,
+        "cols": 1,
         "hspace": "2mm",
         "vspace": "2mm",
         "rotation": "90deg",
@@ -30,7 +30,7 @@
         "hcount":2,
         "source": "none",
         "fillet":"1mm",
-        "mindistance":"15mm"
+        "mindistance":"25.4mm"
     },
     "cuts": {
         "type": "mousebites",
@@ -38,11 +38,7 @@
         "spacing": "1mm",
         "offset": "0.2mm",
         "prolong":"0.5mm",
-        "cutcurves": false,
-        "layer": "Cmts.User",
-        "clearance": "0.1mm",
-        "code": "none",
-        "arg": ""
+        "fillet":"1mm"
     },
     "framing": {
         "type": "railstb",
@@ -57,14 +53,15 @@
         "chamferheight":"0mm",
         "fillet":"1mm"
     },
-    "copperfill":{
+    "copperfill": {
         "type": "hatched",
-        "clearance":"2mm",
-        "spacing":"0.5mm",
-        "width":"0.5mm",
+        "clearance": "0.5mm",
+        "edgeclearance": "0.5mm",
+        "layers": "all",
+        "width": "1mm",
+        "diameter": "5mm",
+        "spacing": "1mm",
         "orientation": "45deg",
-        "layers": "F.Cu,B.Cu",
-        "edgeclearance": "2mm",
         "threshold": "15%"
     },
     "tooling": {
@@ -97,7 +94,6 @@
         "scriptarg": "",
         "origin": "tl",
         "refillzones": false,
-        "dimensions": false,
-        "edgeclearance": "3mm"
-    }    
+        "dimensions": false
+    }
 }

@@ -7,3 +7,6 @@
 [submodule "libs/pcbnewTransition"]
 	path = libs/pcbnewTransition
 	url = https://github.com/snhobbs/pcbnewTransition.git
+[submodule "example/projects/lumenpnp"]
+	path = example/projects/lumenpnp
+	url = git@github.com:TheJigsApp/lumenpnp

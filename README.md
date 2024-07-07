@@ -16,3 +16,9 @@ kikit_multipanel --fname panel.xlsx --out panel.kicad_pcb --preset_f preset.json
 + Add a rectangular packing optimization to autoplace the boards.
 + Centroid file correction
 + Add checking for sections that will be cut off
+
+
+## Notes
++ If the all outlines are not rectangles then vcuts will fail, mousebites need to be used
++ For multi board panels the boards need to be laid out to fit without large gaps.
++ Check the presets file your using by first using the kikit CLI with one of your boards
