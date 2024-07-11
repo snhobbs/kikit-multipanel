@@ -1,22 +1,24 @@
 import itertools
-import kikit
-from kikit import panelize_ui_impl
-from kikit.units import mm, deg
-from kikit.common import fromDegrees
-from kikit.panelize import Panel, Origin
-from pcbnewTransition.transition import pcbnew
+
 # import pcbnew
 import logging
 
+from kikit import panelize_ui_impl
+from kikit.common import fromDegrees
+from kikit.panelize import Origin
+from kikit.panelize import Panel
+from kikit.units import mm
+from pcbnewTransition.transition import pcbnew
+
 
 def panelize(df, out, preset):
-    '''
+    """
     Panelize a set of arbitrary board files.
     :param pandas.DataFrame df: DataFrame of board with columns fname, x, y, rotation
     :param str out: Panel output name
     :param dict preset: Fully formated preset object.
     :returns None:
-    '''
+    """
     settings_board = df.iloc[0]["fname"]
     board = pcbnew.LoadBoard(settings_board)
     panel = Panel(out)
@@ -24,12 +26,12 @@ def panelize(df, out, preset):
     panel.inheritProperties(board)
     panel.inheritTitleBlock(board)
 
-    #cuts = panel.makeFrame(frame_width, frame_hor_space, frame_ver_space)
+    # cuts = panel.makeFrame(frame_width, frame_hor_space, frame_ver_space)
     frame_width = preset["framing"]["width"]
     rail_width = frame_width
     backbone_width = frame_width
 
-    tab_width = 2*mm#preset["tabs"]["width"]
+    tab_width = 2 * mm  # preset["tabs"]["width"]
     backbone_cut_width = tab_width
 
     # add the boards
@@ -44,7 +46,7 @@ def panelize(df, out, preset):
             rotationAngle=fromDegrees(line["rotation"]),
             origin=Origin.TopLeft,
             tolerance=1 * mm,
-            inheritDrc=False  # Required to avoid merging DRC rules
+            inheritDrc=False,  # Required to avoid merging DRC rules
         )
         # ignore bounding box, we should already know the sizes
 
@@ -59,7 +61,14 @@ def panelize(df, out, preset):
 
     # add the tabs
     tabs = preset["tabs"]
-    panel.buildTabAnnotationsFixed(hcount=tabs["hcount"], vcount=tabs["vcount"], hwidth=tabs["hwidth"], vwidth=tabs["vwidth"], minDistance=tabs["mindistance"], ghostSubstrates=framing_substrates)
+    panel.buildTabAnnotationsFixed(
+        hcount=tabs["hcount"],
+        vcount=tabs["vcount"],
+        hwidth=tabs["hwidth"],
+        vwidth=tabs["vwidth"],
+        minDistance=tabs["mindistance"],
+        ghostSubstrates=framing_substrates,
+    )
 
     # add a backbone
 
@@ -69,24 +78,26 @@ def panelize(df, out, preset):
 
     # add frame
 
-
     # create the tab cuts
     # panel.copperFillNonBoardAreas()
     cuts_pr = preset["cuts"]
 
-    #print(tabCuts)
+    # print(tabCuts)
 
-    #tab_cuts = panel.buildTabsFromAnnotations(2*mm)#preset['post']["millradius"])
-    tabCuts = panelize_ui_impl.buildTabs(preset, panel, panel.substrates, framing_substrates)
+    # tab_cuts = panel.buildTabsFromAnnotations(2*mm)#preset['post']["millradius"])
+    tabCuts = panelize_ui_impl.buildTabs(
+        preset, panel, panel.substrates, framing_substrates
+    )
     panelize_ui_impl.makeTabCuts(preset, panel, tabCuts)
     cuts = panelize_ui_impl.buildFraming(preset, panel)
     frame_cuts = itertools.chain(*cuts)
     frameCuts = panelize_ui_impl.buildFraming(preset, panel)
-    panelize_ui_impl.makeOtherCuts(preset, panel, itertools.chain(backboneCuts, frameCuts))
+    panelize_ui_impl.makeOtherCuts(
+        preset, panel, itertools.chain(backboneCuts, frameCuts)
+    )
     panelize_ui_impl.buildPostprocessing(preset["post"], panel)
     panelize_ui_impl.buildFiducials(preset, panel)
     panelize_ui_impl.buildTooling(preset, panel)
     panelize_ui_impl.buildCopperfill(preset["copperfill"], panel)
-    #panelize_ui_impl.buildText(preset["text"], panel)
+    # panelize_ui_impl.buildText(preset["text"], panel)
     panel.save(reconstructArcs=True)
-    return None

@@ -5,7 +5,7 @@ class Board:
     def __init__(self, fname, width=0, length=0, rotation=0, x=0, y=0):
         self.fname = fname
         self.width = width
-        self.length= length
+        self.length = length
         self.board = LoadBoard(fname)
         self.rotation = rotation
         self.x = x
@@ -13,10 +13,9 @@ class Board:
 
 
 def makeGrid(boards):
-    '''
+    """
     For now just take the boards as given with
-    '''
-    pass
+    """
 
 
 def buildLayout(preset, panel, sourceBoard, sourceArea):
@@ -40,21 +39,34 @@ def buildLayout(preset, panel, sourceBoard, sourceArea):
                 hboneskip=layout["hboneskip"],
                 vboneskip=layout["vboneskip"],
                 hbonefirst=layout["hbonefirst"],
-                vbonefirst=layout["vbonefirst"])
+                vbonefirst=layout["vbonefirst"],
+            )
             substrates = panel.makeGrid(
-                boardfile=sourceBoard, sourceArea=sourceArea,
-                rows=layout["rows"], cols=layout["cols"], destination=VECTOR2I(0, 0),
-                rotation=layout["rotation"], placer=placer,
-                netRenamePattern=layout["renamenet"], refRenamePattern=layout["renameref"],
-                bakeText=layout["baketext"])
+                boardfile=sourceBoard,
+                sourceArea=sourceArea,
+                rows=layout["rows"],
+                cols=layout["cols"],
+                destination=VECTOR2I(0, 0),
+                rotation=layout["rotation"],
+                placer=placer,
+                netRenamePattern=layout["renamenet"],
+                refRenamePattern=layout["renameref"],
+                bakeText=layout["baketext"],
+            )
             framingSubstrates = dummyFramingSubstrate(substrates, preset)
             panel.buildPartitionLineFromBB(framingSubstrates)
             backboneCuts = buildBackBone(layout, panel, substrates, framing)
             return substrates, framingSubstrates, backboneCuts
         if type == "plugin":
-            lPlugin = layout["code"](preset, layout["arg"], layout["renamenet"],
-                                     layout["renameref"], layout["vspace"],
-                                     layout["hspace"], layout["rotation"])
+            lPlugin = layout["code"](
+                preset,
+                layout["arg"],
+                layout["renamenet"],
+                layout["renameref"],
+                layout["vspace"],
+                layout["hspace"],
+                layout["rotation"],
+            )
             substrates = lPlugin.buildLayout(panel, sourceBoard, sourceArea)
             framingSubstrates = dummyFramingSubstrate(substrates, preset)
             lPlugin.buildPartitionLine(panel, framingSubstrates)
@@ -66,21 +78,22 @@ def buildLayout(preset, panel, sourceBoard, sourceArea):
         raise PresetError(f"Missing parameter '{e}' in section 'layout'")
 
 
-
 def main(output, boards, preset):
     """
     The panelization logic is separated into a separate function so we can
     handle errors based on the context; e.g., CLI vs GUI
     """
+    from itertools import chain
+
     from kikit import panelize_ui_impl as ki
     from kikit.panelize import Panel
     from pcbnewTransition.transition import pcbnew
-    from itertools import chain
 
     if preset["debug"]["deterministic"]:
         pcbnew.KIID.SeedGenerator(42)
     if preset["debug"]["drawtabfail"]:
         import kikit.substrate
+
         kikit.substrate.TABFAIL_VISUAL = True
 
     panel = Panel(output)
@@ -91,13 +104,12 @@ def main(output, boards, preset):
     panel.inheritProperties(boards[0].board)
     panel.inheritTitleBlock(boards[0].board)
 
-
     for board in boards:
         bounding_box = panel.appendBoard(
             board.fname,
             destination=panel_origin,
             origin=panelize.Origin.TopLeft,
-            tolerance=1 * mm
+            tolerance=1 * mm,
         )
 
         panel_origin = pcbnew.wxPoint(
@@ -105,9 +117,8 @@ def main(output, boards, preset):
             bounding_box.GetY() + bounding_box.GetHeight() + board_spacing,
         )
 
-
-    #sourceArea = ki.readSourceArea(preset["source"], board)
-    #substrates, framingSubstrates, backboneCuts = \
+    # sourceArea = ki.readSourceArea(preset["source"], board)
+    # substrates, framingSubstrates, backboneCuts = \
     #    ki.buildLayout(preset, panel, input, sourceArea)
 
     useHookPlugins(lambda x: x.afterLayout(panel, substrates))
@@ -142,18 +153,23 @@ def main(output, boards, preset):
 
     ki.buildDebugAnnotation(preset["debug"], panel)
 
-    panel.save(reconstructArcs=preset["post"]["reconstructarcs"],
-               refillAllZones=preset["post"]["refillzones"])
+    panel.save(
+        reconstructArcs=preset["post"]["reconstructarcs"],
+        refillAllZones=preset["post"]["refillzones"],
+    )
 
 
 import click
+
+
 @click.command()
 @click.option("--board_f", required=True)
 @click.option("--out", required=True)
 @click.option("--preset", required=True)
 def click_main(**kwargs):
     board = Board(kwargs["board_f"])
-    main(output=kwargs["out"], boards=[board]*5, preset=kwargs["preset"])
+    main(output=kwargs["out"], boards=[board] * 5, preset=kwargs["preset"])
+
 
 if __name__ == "__main__":
     click_main()

@@ -2,11 +2,9 @@
 
 """Tests for `kikit_multipanel` package."""
 
-
 import unittest
-from click.testing import CliRunner
 
-from kikit_multipanel import kikit_multipanel
+from click.testing import CliRunner
 from kikit_multipanel import cli
 
 
@@ -28,9 +26,9 @@ class TestKikit_multipanel(unittest.TestCase):
         result = runner.invoke(cli.main)
         # assert result.exit_code == 0
         # assert 'kikit_multipanel.cli.main' in result.output
-        help_result = runner.invoke(cli.main, ['--help'])
+        help_result = runner.invoke(cli.main, ["--help"])
         assert help_result.exit_code == 0
-        assert 'Show this message and exit.' in help_result.output
-        help_result = runner.invoke(cli.main, ['--version'])
+        assert "Show this message and exit." in help_result.output
+        help_result = runner.invoke(cli.main, ["--version"])
         assert help_result.exit_code == 0
         # assert 'Show this message and exit.' in help_result.output

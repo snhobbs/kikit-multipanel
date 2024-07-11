@@ -1,9 +1,13 @@
 """Console script for kikit_multipanel."""
+
 import sys
+
 import click
-from . import kikit_multipanel, __version__
-from kikit import panelize_ui_impl
 import pandas
+from kikit import panelize_ui_impl
+
+from . import __version__
+from . import kikit_multipanel
 
 
 @click.command()
