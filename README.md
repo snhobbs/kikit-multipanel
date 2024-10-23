@@ -8,6 +8,14 @@ Some extra board sections will need to be added in if the panel has gaps that ar
 ![](panel.svg)
 ![](panel-3D.png)
 
+[Installation](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/installation.rst)
+
+[Contributing](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/contributing.rst)
+
+[Usage](https://github.com/snhobbs/kikit-multipanel/blob/master/docs/contributing.rst)
+
+   
+# usage example
 ```sh
 kikit_multipanel --fname panel.xlsx --out panel.kicad_pcb --preset_f preset.json
 ```
